@@ -37,6 +37,29 @@ class Holatlar(StatesGroup):
     ustoz_tasdiqlash_holati = State()
 
 
-    hodim_kerak_holati = State()
-    ustoz_kerak_holati = State()
-    shogirt_kerak_holati = State()
+    #hodim_kerak_holati
+    hodim_texnalogiya_holati = State()
+    hodim_idora_holati = State()
+    hodim_aloqa_holati = State()
+    hodim_hudud_holati = State()
+    hodim_narx_holati = State()
+    hodim_masul_holati = State()
+    hodim_vaqt_holati = State()
+    hodim_mvaqt_holati = State()
+    hodim_malumot_holati = State()
+    hodim_tasdiqlash_holati = State()
+
+    #shogirt_kerak_holati
+    shogirt_texnalogiya_holati = State()
+    shogirt_ism_holati = State()
+    shogirt_yosh_holati = State()
+    shogirt_aloqa_holati = State()
+    shogirt_hudud_holati = State()
+    shogirt_narx_holati = State()
+    shogirt_kasb_holati = State()
+    shogirt_vaqt_holati = State()
+    shogirt_maqsad_holati = State()
+    shogirt_tasdiqlash_holati = State()
+
+    adminga_jonatish_holati = State()
+

@@ -6,8 +6,6 @@ from loader import dp
 
 @dp.message_handler(CommandHelp())
 async def bot_help(message: types.Message):
-    text = ("Buyruqlar: ",
-            "/start - Botni ishga tushirish",
-            "/help - Yordam")
+    text = (f"@UstozShogirt kanalining norasmiy clone boti. O'rganish va o'rganganlarimni takrorlash uchun bajarilgan ish, bundan hech qanday moddiy manfaat ko'zlanmagan")
     
-    await message.answer("\n".join(text))
+    await message.answer(text=text)

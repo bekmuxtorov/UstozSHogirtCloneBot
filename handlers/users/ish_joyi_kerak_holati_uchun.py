@@ -6,6 +6,9 @@ from .foydali_funksiyalar import (
     jonatish,
     )
 
+from keyboards.inline.inline_buttons import admin_control
+from data.config import kanallar
+
 
 from loader import dp,bot
 
@@ -105,9 +108,10 @@ async def bot_echo(message: types.Message, state: FSMContext):
     vaqt = malumotlar.get('vaqt')
     tg_username = message.from_user.username
     maqsad = malumotlar.get('maqsad')
+    status = "Ish joyi"
 
     user_id = message.from_user.id
-    await bot.send_message(chat_id=user_id, text=jonatish(ism,texnalogiya, tg_username, aloqa, hudud, narx, kasb, vaqt, maqsad, yosh))
+    await bot.send_message(chat_id=user_id, text=jonatish(status,ism,texnalogiya, tg_username, aloqa, hudud, narx, kasb, vaqt, maqsad, yosh))
     await message.answer(text="Barcha ma'lumotlar to'g'rimi, adminga jo'natish kerakmi?", reply_markup=tasdiqlash_buttons)
     await Holatlar.ish_tasdiqlash_holati.set()
 
@@ -127,18 +131,21 @@ async def univ(message: types.Message, state: FSMContext):
     vaqt = malumotlar.get('vaqt')
     tg_username = message.from_user.username
     maqsad = malumotlar.get('maqsad')
+    status = "Ish joyi"
 
-
-    await bot.send_message(chat_id='1603330179', text=jonatish(ism,texnalogiya, tg_username, aloqa, hudud, narx, kasb, vaqt, maqsad, yosh))
+    for kanal in kanallar:
+        await bot.send_message(chat_id=kanal, text=jonatish(status, ism,texnalogiya, tg_username, aloqa, hudud, narx, kasb, vaqt, maqsad, yosh))
     await bot.send_message(chat_id=user_id,text="<b>✔Muaffaqiyatli jo'natildi!</b>", reply_markup=start_buttons)
     await state.finish()
+    await Holatlar.adminga_jonatish_holati.set()
 
 
 @dp.message_handler(text="Yo'q", state=Holatlar.ish_tasdiqlash_holati)
 async def univ(message: types.Message, state: FSMContext):
     chat_id = message.from_user.id
-    await bot.send_message(chat_id=chat_id ,text="<b>Bekor qilindi</b>")
+    await bot.send_message(chat_id=chat_id ,text="<b>Bekor qilindi</b>",  reply_markup=start_buttons)
     await state.finish()
+
 
 
 
